@@ -34,13 +34,6 @@ public class FingerArranger : MonoBehaviour
     {
         if (Input.anyKeyDown && !Input.GetMouseButtonDown(0))
         {
-			if (Time.timeScale < 0.5f && Input.GetKeyDown(KeyCode.Return))
-			{
-				game.ResetHP();
-				Time.timeScale = 1f;
-				randomNewArrangement();
-			}
-
             bool isGood = false;
 
             for (int finger = 0; finger < fingers.Length; finger++)
@@ -72,20 +65,33 @@ public class FingerArranger : MonoBehaviour
 					}
                 }
 
-				key = startArrangement[finger] - currentArrangement[finger];
-				fingerMover.MoveFinger(finger, key);
-				comboDisplayScript.DisableDisplays(finger, key);
-
+                if (Time.timeScale > 0.5f)
+                {
+                    key = startArrangement[finger] - currentArrangement[finger];
+                    fingerMover.MoveFinger(finger, key);
+                    comboDisplayScript.DisableDisplays(finger, key);
+                }
             }
 
             if (!isGood)
             {
                 Debug.Log("bad");
-				Instantiate(badParticles, badParticles.transform.position, badParticles.transform.rotation);
-				StartCoroutine(delayNewRandom(0.25f));
+                
+                if (Time.timeScale > 0.5f)
+                    Instantiate(badParticles, badParticles.transform.position, badParticles.transform.rotation);
+
+                StartCoroutine(delayNewRandom(0.25f));
 			}
+
+            if (Time.timeScale < 0.5f && Input.GetKeyDown(KeyCode.Return))
+            {
+                game.ResetHP();
+                Time.timeScale = 1f;
+                randomNewArrangement();
+            }
         }
-		goodTimer += Time.deltaTime;
+
+        goodTimer += Time.deltaTime;
     }
 
 	IEnumerator delayNewRandom(float delay)

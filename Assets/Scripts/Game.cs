@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
 	public SpriteRenderer CurrentImage;
 	public Sprite[] DogImages;
 	public GameObject winParticles;
+	public GameObject endMessage;
 
     bool spawnParticles = true;
     bool isEnded = false;
@@ -35,6 +36,7 @@ public class Game : MonoBehaviour
             {
 			    Time.timeScale = 0f;
                 isEnded = true;
+                endMessage.SetActive(true);
             }
         }
 		else if(hp >= 0.75f)
@@ -61,6 +63,7 @@ public class Game : MonoBehaviour
             {
 			    Time.timeScale = 0f;
                 isEnded = true;
+                endMessage.SetActive(true);
             }
         }
     }
@@ -75,5 +78,6 @@ public class Game : MonoBehaviour
 		hp = 0.5f;
 		spawnParticles = true;
         isEnded = false;
+        endMessage.SetActive(false);
 	}
 }
