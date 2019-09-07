@@ -23,12 +23,14 @@ public class FingerArranger : MonoBehaviour
         {
             bool isGood = false;
 
-            for (int i = 0; i < fingers.Length; i++)
+            for (int finger = 0; finger < fingers.Length; finger++)
             {
-                if (currentArrangement[i] > 0 && Input.GetKeyDown(fingers[i][startArrangement[i] - currentArrangement[i]].ToString()))
+                int key = startArrangement[finger] - currentArrangement[finger];
+
+                if (currentArrangement[finger] > 0 && Input.GetKeyDown(fingers[finger][key].ToString()))
                 {
                     Debug.Log("good");
-                    --currentArrangement[i];
+                    --currentArrangement[finger];
                     isGood = true;
                     break;
                 }
