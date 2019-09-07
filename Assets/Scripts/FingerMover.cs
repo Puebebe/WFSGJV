@@ -17,6 +17,7 @@ public class FingerMover : MonoBehaviour
 
 	public void MoveFinger(int finger, int amount)
 	{
+		Debug.Log("finger " + finger + " amount " + amount);
 		switch (amount)
 		{
 			case 0:

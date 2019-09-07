@@ -8,6 +8,10 @@ public class FingerArranger : MonoBehaviour
     int[] startArrangement;
     int[] currentArrangement;
 
+	public ComboDisplayScript comboDisplayScript;
+	public Game game;
+	public FingerMover fingerMover;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,28 +31,53 @@ public class FingerArranger : MonoBehaviour
             {
                 int key = startArrangement[finger] - currentArrangement[finger];
 
-                if (currentArrangement[finger] > 0 && Input.GetKeyDown(fingers[finger][key].ToString()))
+				if (currentArrangement[finger] > 0 && Input.GetKeyDown(fingers[finger][key].ToString()))
                 {
                     Debug.Log("good");
-                    --currentArrangement[finger];
+					currentArrangement[finger]--;
                     isGood = true;
-                    break;
+
+					bool allGood = true;
+					for (int i = 0; i < currentArrangement.Length; i++)
+					{
+						if (currentArrangement[i] != 0)
+						{
+							allGood = false;
+						}
+					}
+
+					if (allGood)
+					{
+						game.AddHP(0.1f);
+						StartCoroutine(delayNewRandom(0.25f));
+					}
                 }
+
+				key = startArrangement[finger] - currentArrangement[finger];
+				fingerMover.MoveFinger(finger, key);
+
             }
 
             if (!isGood)
             {
                 Debug.Log("bad");
-                randomNewArrangement();
-            }
+				StartCoroutine(delayNewRandom(0.25f));
+			}
         }
     }
+
+	IEnumerator delayNewRandom(float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		randomNewArrangement();
+	}
 
     private void randomNewArrangement()
     {
         for (int i = 0; i < startArrangement.Length; i++)
         {
             currentArrangement[i] = startArrangement[i] = Random.Range(0, fingers[i].Length + 1);
+			fingerMover.MoveFinger(i, 0);
         }
 
         int zerosCounter = 0;
@@ -58,18 +87,20 @@ public class FingerArranger : MonoBehaviour
             if (x == 0)
                 zerosCounter++;
         }
-
-        if (zerosCounter < 1)
+		 
+        if (zerosCounter > 3)
         {
             int randomFinger = Random.Range(0, fingers.Length);
             currentArrangement[randomFinger] = startArrangement[randomFinger] = Random.Range(1, fingers[randomFinger].Length + 1);
         }
 
-        if (zerosCounter > 3)
+        if (zerosCounter < 1)
         {
             int randomFinger = Random.Range(0, fingers.Length);
             currentArrangement[randomFinger] = startArrangement[randomFinger] = 0;
         }
+
+		comboDisplayScript.SetDisplays(startArrangement);
 
         //DEBUG
         string newArrangement = "";
