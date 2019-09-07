@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Game : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class Game : MonoBehaviour
 	public GameObject winParticles;
 	public GameObject endMessage;
 
+	public TextMeshProUGUI timerText;
+	float timer = 0f;
+
     bool spawnParticles = true;
     bool isEnded = false;
 
@@ -21,6 +25,9 @@ public class Game : MonoBehaviour
     {
 		hp -= Time.deltaTime / 50f;
 		hpDisplay.DisplayHP(hp);
+
+		timer += Time.deltaTime;
+		timerText.text = string.Format("{0:0.0}",timer);
 
 		if (hp >= 1f)
 		{
@@ -79,5 +86,6 @@ public class Game : MonoBehaviour
 		spawnParticles = true;
         isEnded = false;
         endMessage.SetActive(false);
+		timer = 0f;
 	}
 }
