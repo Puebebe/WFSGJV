@@ -3546,12 +3546,12 @@ MonoBehaviour:
   hpDisplay: {fileID: 1179647203}
   CurrentImage: {fileID: 743289372}
   DogImages:
-  - {fileID: 21300000, guid: 1c84d8e7abefd05499121b76cb709020, type: 3}
+  - {fileID: 21300000, guid: 7190d8804144ba741ba8feb1c16b8a3a, type: 3}
   - {fileID: 21300000, guid: 5d14c5e39b5475947b7d2de601299417, type: 3}
   - {fileID: 21300000, guid: bbcf3a68d80aed14cbf00b186c9678a5, type: 3}
   - {fileID: 21300000, guid: 3798ef8165e92dc4b94ff947e6ba6788, type: 3}
   - {fileID: 21300000, guid: 34a3523eb03c52d4ab91f83e91b84a77, type: 3}
-  - {fileID: 21300000, guid: 8ba6e96d32984c94aa2e142699dc33d0, type: 3}
+  - {fileID: 21300000, guid: c33f569282a57ca47a3a5479dabc36dc, type: 3}
   winParticles: {fileID: 8386889237522156397, guid: d96f9f2715d15c14284a62362951211f,
     type: 3}
   endMessage: {fileID: 783008420}
