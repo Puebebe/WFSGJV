@@ -13,6 +13,14 @@ public class FingerArranger : MonoBehaviour
 	public FingerMover fingerMover;
 	public GameObject badParticles;
 
+	float goodTimer = 0f;
+
+	public Transform Canvas;
+	public GameObject[] positiveFeedbackObjects;
+	public Rect positiveFeedbackArea;
+	public Vector2 positiveFeedbackScale;
+	public float positiveFeedbackRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +64,11 @@ public class FingerArranger : MonoBehaviour
 
 					if (allGood)
 					{
+						PositiveFeedback();
 						game.AddHP(0.1f);
 						Debug.Log("all good");
 						StartCoroutine(delayNewRandom(0.25f));
+						
 					}
                 }
 
@@ -75,6 +85,7 @@ public class FingerArranger : MonoBehaviour
 				StartCoroutine(delayNewRandom(0.25f));
 			}
         }
+		goodTimer += Time.deltaTime;
     }
 
 	IEnumerator delayNewRandom(float delay)
@@ -113,6 +124,8 @@ public class FingerArranger : MonoBehaviour
 
 		comboDisplayScript.SetDisplays(startArrangement);
 
+		goodTimer = 0f;
+
         //DEBUG
         string newArrangement = "";
         foreach (var x in startArrangement)
@@ -121,4 +134,43 @@ public class FingerArranger : MonoBehaviour
         }
         Debug.LogWarning(newArrangement);
     }
+
+	private void PositiveFeedback()
+	{
+		Quaternion rot = Quaternion.identity;
+		rot.eulerAngles += new Vector3(0f, 0f, positiveFeedbackRotation * Random.Range(-1f, 1f));
+		Vector3 pos = positiveFeedbackArea.center;
+		pos += new Vector3(positiveFeedbackArea.width/2f * Random.Range(-1f,1f),positiveFeedbackArea.height/2f * Random.Range(-1f,1f) ,0);
+		float scale = Mathf.Lerp(positiveFeedbackScale.x,positiveFeedbackScale.y, Random.Range(0f,1f));
+		Vector3 scl = new Vector3(1f,1f,1f);
+		GameObject tmp = null;
+
+		if (goodTimer <= 1f)
+		{
+			tmp = Instantiate(positiveFeedbackObjects[0],Canvas);
+		}
+		else if (goodTimer <= 1.5f)
+		{
+			tmp = Instantiate(positiveFeedbackObjects[1], Canvas);
+		}
+		else if (goodTimer <= 2f)
+		{
+			tmp = Instantiate(positiveFeedbackObjects[2], Canvas);
+		}
+		else
+		{
+			tmp = Instantiate(positiveFeedbackObjects[3], Canvas);
+		}
+
+		tmp.transform.localScale = scl;
+		tmp.transform.rotation = rot;
+		tmp.transform.localPosition = pos;
+		StartCoroutine( DelayDestroy(tmp, 1f));
+	}
+
+	IEnumerator DelayDestroy(GameObject target, float delay)
+	{
+		yield return new WaitForSecondsRealtime(delay);
+		Destroy(target);
+	}
 }

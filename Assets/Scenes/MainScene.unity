@@ -1514,7 +1514,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -2275,6 +2275,20 @@ MonoBehaviour:
   fingerMover: {fileID: 7962132695765485350}
   badParticles: {fileID: 7401236259975803840, guid: b672c402fc4a267469c51eb9a0a75b0b,
     type: 3}
+  Canvas: {fileID: 1179647202}
+  positiveFeedbackObjects:
+  - {fileID: 2061754363605257125, guid: 4ca071fa42d947b43a6101293d57b8ca, type: 3}
+  - {fileID: 1924561903660229125, guid: aabbfad34465cb742bb8ebb3a4964acb, type: 3}
+  - {fileID: 7194860919765493358, guid: 715e30d6b51c7ca489d553dba07fec75, type: 3}
+  - {fileID: 7078500224151047911, guid: b6839addaa5d8db4488a8a05da323249, type: 3}
+  positiveFeedbackArea:
+    serializedVersion: 2
+    x: -310
+    y: -120
+    width: 60
+    height: 100
+  positiveFeedbackScale: {x: 0.8, y: 1}
+  positiveFeedbackRotation: 10
 --- !u!114 &1651164633
 MonoBehaviour:
   m_ObjectHideFlags: 0
