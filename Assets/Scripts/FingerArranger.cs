@@ -63,6 +63,7 @@ public class FingerArranger : MonoBehaviour
 
 				key = startArrangement[finger] - currentArrangement[finger];
 				fingerMover.MoveFinger(finger, key);
+				comboDisplayScript.DisableDisplays(finger, key);
 
             }
 

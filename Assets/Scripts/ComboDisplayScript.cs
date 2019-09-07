@@ -45,4 +45,12 @@ public class ComboDisplayScript : MonoBehaviour
 		}
 	}
 
+	public void DisableDisplays(int row, int amount)
+	{
+		for (int i = 0; i < amount; i++)
+		{
+			Displays[row * 3 + i].SetActive(false);
+		}
+	}
+
 }
