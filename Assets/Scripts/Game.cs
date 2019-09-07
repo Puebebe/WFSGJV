@@ -17,6 +17,8 @@ public class Game : MonoBehaviour
 	public TextMeshProUGUI timerText;
 	float timer = 0f;
 
+    public ComboDisplayScript comboDisplay;
+
     bool spawnParticles = true;
     bool isEnded = false;
 
@@ -71,6 +73,11 @@ public class Game : MonoBehaviour
 			    Time.timeScale = 0f;
                 isEnded = true;
                 endMessage.SetActive(true);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    comboDisplay.DisableDisplays(i, 3);
+                }
             }
         }
     }
