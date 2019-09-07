@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-
-	float hp = 1f;
+	[SerializeField]
+	float hp = 0.5f;
 	public HPDisplay hpDisplay;
 
     // Update is called once per frame
