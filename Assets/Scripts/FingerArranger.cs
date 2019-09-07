@@ -11,6 +11,7 @@ public class FingerArranger : MonoBehaviour
 	public ComboDisplayScript comboDisplayScript;
 	public Game game;
 	public FingerMover fingerMover;
+	public GameObject badParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +71,7 @@ public class FingerArranger : MonoBehaviour
             if (!isGood)
             {
                 Debug.Log("bad");
+				Instantiate(badParticles, badParticles.transform.position, badParticles.transform.rotation);
 				StartCoroutine(delayNewRandom(0.25f));
 			}
         }

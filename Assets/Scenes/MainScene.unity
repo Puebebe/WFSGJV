@@ -2273,6 +2273,8 @@ MonoBehaviour:
   comboDisplayScript: {fileID: 703080700}
   game: {fileID: 1651164633}
   fingerMover: {fileID: 7962132695765485350}
+  badParticles: {fileID: 7401236259975803840, guid: b672c402fc4a267469c51eb9a0a75b0b,
+    type: 3}
 --- !u!114 &1651164633
 MonoBehaviour:
   m_ObjectHideFlags: 0
