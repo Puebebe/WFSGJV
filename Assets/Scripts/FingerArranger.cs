@@ -25,6 +25,13 @@ public class FingerArranger : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
+			if (Time.timeScale < 0.5f && Input.GetKeyDown(KeyCode.Return))
+			{
+				game.ResetHP();
+				Time.timeScale = 1f;
+				randomNewArrangement();
+			}
+
             bool isGood = false;
 
             for (int finger = 0; finger < fingers.Length; finger++)
@@ -49,6 +56,7 @@ public class FingerArranger : MonoBehaviour
 					if (allGood)
 					{
 						game.AddHP(0.1f);
+						Debug.Log("all good");
 						StartCoroutine(delayNewRandom(0.25f));
 					}
                 }
