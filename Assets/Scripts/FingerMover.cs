@@ -69,7 +69,7 @@ public class FingerMover : MonoBehaviour
 				break;
 		}
 		
-		if (amount != 0)
+		if (amount != 0 && Time.timeScale > 0.5f)
 		{
 			ParticleSystem particles = Instantiate(simpleBoom, Fingers[finger].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
 			var main = particles.main;

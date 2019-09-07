@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,8 @@ public class Game : MonoBehaviour
 	public Sprite[] DogImages;
 	public GameObject winParticles;
 
-	public bool spawnParticles = true;
+    bool spawnParticles = true;
+    bool isEnded = false;
 
     // Update is called once per frame
     void Update()
@@ -23,13 +24,19 @@ public class Game : MonoBehaviour
 		if (hp >= 1f)
 		{
 			CurrentImage.sprite = DogImages[0];
+
 			if (spawnParticles)
 			{
 				Instantiate(winParticles, winParticles.transform.position, winParticles.transform.rotation);
 				spawnParticles = false;
 			}
-			Time.timeScale = 0f;
-		}
+
+            if (!isEnded)
+            {
+			    Time.timeScale = 0f;
+                isEnded = true;
+            }
+        }
 		else if(hp >= 0.75f)
 		{
 			CurrentImage.sprite = DogImages[1];
@@ -49,8 +56,13 @@ public class Game : MonoBehaviour
 		else
 		{
 			CurrentImage.sprite = DogImages[5];
-			Time.timeScale = 0f;
-		}
+            
+            if (!isEnded)
+            {
+			    Time.timeScale = 0f;
+                isEnded = true;
+            }
+        }
     }
 
 	public void AddHP(float amount)
@@ -62,5 +74,6 @@ public class Game : MonoBehaviour
 	{
 		hp = 0.5f;
 		spawnParticles = true;
+        isEnded = false;
 	}
 }
