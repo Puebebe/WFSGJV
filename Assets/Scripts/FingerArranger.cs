@@ -23,7 +23,7 @@ public class FingerArranger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && !Input.GetMouseButtonDown(0))
         {
 			if (Time.timeScale < 0.5f && Input.GetKeyDown(KeyCode.Return))
 			{
