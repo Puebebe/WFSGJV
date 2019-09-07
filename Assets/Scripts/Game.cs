@@ -10,6 +10,9 @@ public class Game : MonoBehaviour
 
 	public SpriteRenderer CurrentImage;
 	public Sprite[] DogImages;
+	public GameObject winParticles;
+
+	public bool spawnParticles = true;
 
     // Update is called once per frame
     void Update()
@@ -20,6 +23,11 @@ public class Game : MonoBehaviour
 		if (hp >= 1f)
 		{
 			CurrentImage.sprite = DogImages[0];
+			if (spawnParticles)
+			{
+				Instantiate(winParticles, winParticles.transform.position, winParticles.transform.rotation);
+				spawnParticles = false;
+			}
 			Time.timeScale = 0f;
 		}
 		else if(hp >= 0.75f)
@@ -53,5 +61,6 @@ public class Game : MonoBehaviour
 	public void ResetHP()
 	{
 		hp = 0.5f;
+		spawnParticles = true;
 	}
 }

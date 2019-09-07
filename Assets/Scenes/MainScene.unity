@@ -1418,6 +1418,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3798ef8165e92dc4b94ff947e6ba6788, type: 3}
   - {fileID: 21300000, guid: 34a3523eb03c52d4ab91f83e91b84a77, type: 3}
   - {fileID: 21300000, guid: 28f24c285da4d674bb8b1e2fc2221fc5, type: 3}
+  winParticles: {fileID: 8386889237522156397, guid: d96f9f2715d15c14284a62362951211f,
+    type: 3}
 --- !u!1 &1682816433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1995,3 +1997,5 @@ MonoBehaviour:
   - {fileID: 7962132695765485340}
   - {fileID: 7962132695765485339}
   - {fileID: 7962132695765485338}
+  simpleBoom: {fileID: 7293342018752946184, guid: cc223498e3c77b24fa1b5d69a0c4c2a8,
+    type: 3}

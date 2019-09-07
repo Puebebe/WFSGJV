@@ -6,6 +6,7 @@ public class FingerMover : MonoBehaviour
 {
 
 	public GameObject[] Fingers;
+	public GameObject simpleBoom;
 
 	private void Start()
 	{
@@ -67,6 +68,32 @@ public class FingerMover : MonoBehaviour
 			default:
 				break;
 		}
+		
+		if (amount != 0)
+		{
+			ParticleSystem particles = Instantiate(simpleBoom, Fingers[finger].transform.position, Quaternion.identity).GetComponent<ParticleSystem>();
+			var main = particles.main;
+			switch (finger)
+			{
+				case 0:
+					main.startColor = Color.green;
+					break;
+				case 1:
+					main.startColor = Color.magenta;
+					break;
+				case 2:
+					main.startColor = Color.blue;
+					break;
+				case 3:
+					main.startColor = Color.yellow;
+					break;
+				default:
+					break;
+			}
+		}
+		
+		
+		
 	}
 
 }
